@@ -1,12 +1,10 @@
-tempo = 1
 
 print("Robô Hugo 4.0 foi inicializado…")
-
 F_Max = int(input())
 forca_inicial = int(input())
 nivel = input()
 forca_media_jogador = int(input())
-#Definindo a dificuldade
+
 if nivel == "facil":
     print("Iniciando no modo iniciante... Ótimo para aquecer os motores!")
     incremento = 1
@@ -16,22 +14,26 @@ elif nivel == "medio":
 else:
     print("Modo lendário ativado! Hugo 4.0 está a todo vapor — prepare-se para o combate definitivo!")
     incremento = 5
-#Rebatida e Força Acumulada
-rebatida = forca_inicial + (tempo * incremento)
-forca_acumulada = rebatida
-#Laço
-print(f"Rebatida {tempo}: força = {rebatida}, força acumulada = {forca_acumulada}")
-while forca_acumulada < F_Max and rebatida <= 150:
+
+tempo = 0
+forca_acumulada = 0
+rebatida = 0
+jogo = True
+while jogo:
     tempo += 1
     rebatida = forca_inicial + (tempo * incremento)
-    forca_acumulada += rebatida
-    print(f"Rebatida {tempo}: força = {rebatida}, força acumulada = {forca_acumulada}")
-#Condicionais
-if forca_acumulada > F_Max:
-    print("Energia do robô esgotada! Encerrando o confronto…")
-elif rebatida > 150:
-    print("Bola fora! A força da rebatida excedeu os limites da mesa.")
-#Cáuculos Finais
+    if rebatida <= 150:
+        forca_acumulada += rebatida
+        print(f"Rebatida {tempo}: força = {rebatida}, força acumulada = {forca_acumulada}")
+    
+    if rebatida > 150:
+        print("Bola fora! A força da rebatida excedeu os limites da mesa.")
+        jogo = False
+    
+    if forca_acumulada > F_Max:
+        print("Energia do robô esgotada! Encerrando o confronto…")
+        jogo = False
+
 forca_media_robo = forca_acumulada // tempo
 
 #Finalização
@@ -45,4 +47,3 @@ elif forca_media_jogador > forca_media_robo:
     print("Vitória do jogador! O talento humano ainda é imbatível!")
 else:
     print("Empate técnico! Um duelo digno de mestres do tênis de mesa.")
-    
