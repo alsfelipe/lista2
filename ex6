@@ -1,0 +1,142 @@
+numero_rodadas = int(input())
+
+#Tomada
+print("Vamos dar início à disputa!!! TOMADA!!!")
+vencedor_tomada = input()
+if vencedor_tomada == "Jaob":
+    print("Jaob veio de Catende e está pronto para vencer!!!")
+elif vencedor_tomada == "Luvusier":
+    print("Nada se cria, tudo se transforma, então Luvusier irá se transformar em um vencedor!!!")
+
+#Variáveis
+contador = 0
+rodada = 1
+jogada = 0
+pontojaob = 0
+pontoluvusier = 0
+
+while contador < numero_rodadas:
+    print(f"COMEÇA A {rodada}ª RODADA!")
+    #De quem é a rodada   
+    if rodada_monitor == "Jaob":
+        vencedor_tomada = "Jaob"
+    elif rodada_monitor == "Luvusier":
+        vencedor_tomada == "Luvusier"
+    #jogada
+    
+    jogada += 1
+    objeto_acertado = input()
+
+    #mesa
+    while objeto_acertado == "mesa":
+        if vencedor_tomada == "Jaob" and jogada % 2 == 1:
+            rodada_monitor = "Jaob"
+        elif vencedor_tomada == "Jaob":
+            rodada_monitor = "Luvusier"
+        elif vencedor_tomada == "Luvusier" and jogada % 2 == 1:
+            rodada_monitor = "Luvusier"
+        elif vencedor_tomada == "Luvusier":
+            rodada_monitor = "Jaob"
+        print(f"{rodada_monitor} jogou a bolinha no(a) {objeto_acertado}!")
+        objeto_acertado = input()
+        if objeto_acertado == "mesa":
+            jogada += 1
+        
+
+    if vencedor_tomada == "Jaob" and jogada % 2 == 1:
+        rodada_monitor = "Jaob"
+    elif vencedor_tomada == "Jaob":
+        rodada_monitor = "Luvusier"
+    elif vencedor_tomada == "Luvusier" and jogada % 2 == 1:
+        rodada_monitor = "Luvusier"
+    elif vencedor_tomada == "Luvusier":
+        rodada_monitor = "Jaob"
+        
+    #Rodada Jaob
+    if rodada_monitor == "Jaob":
+        if objeto_acertado == "Baralho de UNO":
+            pontojaob+= 2
+            acertou = True
+        elif objeto_acertado == "Armário de Homero e Elena":
+            pontojaob += 3
+            acertou = True
+        elif objeto_acertado == "Peça de Dominó":
+            pontojaob += 3
+            acertou = True
+        elif objeto_acertado == "Baralho de Coup Desaparecido":
+            pontojaob += 100
+            acertou = True
+        elif objeto_acertado == "Projetor":
+            pontojaob -= 2
+            acertou = False
+        elif objeto_acertado == "Computador":
+            pontojaob -= 3
+            acertou = False
+        elif objeto_acertado == "Cabeça do Amiguinho":
+            pontojaob -= 5
+            acertou = False
+        elif objeto_acertado == "Nada":
+            pontojaob -= 1
+            acertou = False
+
+        if pontojaob < 0:
+            pontojaob = 0
+
+        print(f"{rodada_monitor} jogou a bolinha no(a) {objeto_acertado}!")
+        if acertou:
+            print(f"{rodada_monitor} teve uma grande pontaria e acertou {objeto_acertado}! Agora está com {pontojaob} pontos.")
+            if objeto_acertado ==  "Baralho de Coup Desaparecido":
+                print(f"{rodada_monitor} achou o Coup!!! Ele merece a vitória sem dúvidas!")
+        else:
+            print(f"{rodada_monitor} teve mãos de alface e acertou o(a) {objeto_acertado}. Agora está com {pontojaob} pontos.")
+
+    #Rodada Luvusier
+    if rodada_monitor == "Luvusier":
+        if objeto_acertado == "Baralho de UNO":
+            pontoluvusier += 2
+            acertou = True
+        elif objeto_acertado == "Armário de Homero e Elena":
+            pontoluvusier += 3
+            acertou = True
+        elif objeto_acertado == "Peça de Dominó":
+            pontoluvusier += 3
+            acertou = True
+        elif objeto_acertado == "Baralho de Coup Desaparecido":
+            pontoluvusier += 100
+            acertou = True
+        elif objeto_acertado == "Projetor":
+            pontoluvusier -= 2
+            acertou = False
+        elif objeto_acertado == "Computador":
+            pontoluvusier -= 3
+            acertou = False
+        elif objeto_acertado == "Cabeça do Amiguinho":
+            pontoluvusier -= 5
+            acertou = False
+        elif objeto_acertado == "Nada":
+            pontoluvusier -= 1
+            acertou = False
+
+        if pontoluvusier < 0:
+            pontoluvusier = 0
+
+        print(f"{rodada_monitor} jogou a bolinha no(a) {objeto_acertado}!")
+        if acertou:
+            print(f"{rodada_monitor} teve uma grande pontaria e acertou {objeto_acertado}! Agora está com {pontoluvusier} pontos.")
+            if objeto_acertado ==  "Baralho de Coup Desaparecido":
+                print(f"{rodada_monitor} achou o Coup!!! Ele merece a vitória sem dúvidas!")
+        else:
+            print(f"{rodada_monitor} teve mãos de alface e acertou o(a) {objeto_acertado}. Agora está com {pontoluvusier} pontos.")
+
+   
+    contador += 1
+    rodada += 1
+#Achando o Vencedor
+print()
+print("TEMOS O RESULTADO DA PARTIDA!")
+if pontojaob > pontoluvusier:
+    print(f"Jaob deu orgulho à Catende e ganhou a disputa com {pontojaob} pontos!")
+elif pontoluvusier > pontojaob:
+    print(f"A química está em festa, Luvusier ganha a disputa com {pontoluvusier} pontos!")
+else:
+    print("Jaob usou a sua autoridade como monitor-chefe e ganhou a disputa mesmo com o empate!")
